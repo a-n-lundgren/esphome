@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef USE_ARDUINO
+//#ifdef USE_ARDUINO
 
 #include "esphome/core/component.h"
 #include "esphome/components/uart/uart.h"
@@ -68,4 +68,4 @@ class GPS : public PollingComponent, public uart::UARTDevice {
 }  // namespace gps
 }  // namespace esphome
 
-#endif  // USE_ARDUINO
+//#endif  // USE_ARDUINO
