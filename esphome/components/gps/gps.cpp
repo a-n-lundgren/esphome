@@ -1,4 +1,4 @@
-#ifdef USE_ARDUINO
+//#ifdef USE_ARDUINO
 
 #include "gps.h"
 #include "esphome/core/log.h"
@@ -72,4 +72,4 @@ void GPS::loop() {
 }  // namespace gps
 }  // namespace esphome
 
-#endif  // USE_ARDUINO
+// #endif  // USE_ARDUINO
