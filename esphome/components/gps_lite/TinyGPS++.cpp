@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #include "TinyGPS++.h"
+#include "esphome/core/hal.h"
 
 #include <string.h>
 #include <ctype.h>
