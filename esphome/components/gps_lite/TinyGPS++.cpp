@@ -96,6 +96,8 @@ bool TinyGPSPlus::encode(char c)
     return false;
   }
 
+  yield();
+
   return false;
 }
 
@@ -148,6 +150,7 @@ void TinyGPSPlus::parseDegrees(const char *term, RawDegrees &deg)
     {
       multiplier /= 10;
       tenMillionthsOfMinutes += (*term - '0') * multiplier;
+      yield();
     }
 
   deg.billionths = (5 * tenMillionthsOfMinutes + 1) / 3;
@@ -195,8 +198,10 @@ bool TinyGPSPlus::endOfTermHandler()
       }
 
       // Commit all custom listeners of this sentence type
-      for (TinyGPSCustom *p = customCandidates; p != NULL && strcmp(p->sentenceName, customCandidates->sentenceName) == 0; p = p->next)
-         p->commit();
+      for (TinyGPSCustom *p = customCandidates; p != NULL && strcmp(p->sentenceName, customCandidates->sentenceName) == 0; p = p->next) {
+        p->commit();
+        yield();
+      }
       return true;
     }
 
@@ -276,9 +281,12 @@ bool TinyGPSPlus::endOfTermHandler()
   }
 
   // Set custom values as needed
-  for (TinyGPSCustom *p = customCandidates; p != NULL && strcmp(p->sentenceName, customCandidates->sentenceName) == 0 && p->termNumber <= curTermNumber; p = p->next)
-    if (p->termNumber == curTermNumber)
-         p->set(term);
+  for (TinyGPSCustom *p = customCandidates; p != NULL && strcmp(p->sentenceName, customCandidates->sentenceName) == 0 && p->termNumber <= curTermNumber; p = p->next) {
+    if (p->termNumber == curTermNumber) {
+      p->set(term);
+      yield();
+    }
+  }
 
   return false;
 }
