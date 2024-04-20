@@ -73,9 +73,10 @@ void GPS::loop() {
         yield();
       }
     }
-    */
+    
     yield();
   }
+  */
 }
 
 }  // namespace gps_lite
