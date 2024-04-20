@@ -39,6 +39,7 @@ class GPS : public PollingComponent, public uart::UARTDevice {
   }
   float get_setup_priority() const override { return setup_priority::HARDWARE; }
 
+  void setup() override;
   void loop() override;
   void update() override;
 
