@@ -9,6 +9,10 @@ static const char *const TAG = "gps";
 
 TinyGPSPlus &GPSListener::get_tiny_gps() { return this->parent_->get_tiny_gps(); }
 
+void GPS::setup() {
+  ESP_LOGD(TAG, "Setting up GPSlite...");
+}
+
 void GPS::update() {
   if (this->latitude_sensor_ != nullptr)
     this->latitude_sensor_->publish_state(this->latitude_);
