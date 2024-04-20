@@ -62,9 +62,12 @@ void GPS::loop() {
         ESP_LOGD(TAG, "  %d", this->satellites_);
       }
 
-      for (auto *listener : this->listeners_)
+      for (auto *listener : this->listeners_) {
         listener->on_update(this->tiny_gps_);
+        yield();
+      }
     }
+    yield();
   }
 }
 
