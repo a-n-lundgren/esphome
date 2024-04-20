@@ -34,6 +34,7 @@ void GPS::update() {
 }
 
 void GPS::loop() {
+  delay(10000);
   while (this->available() && !this->has_time_) {
     if (this->tiny_gps_.encode(this->read())) {
       if (tiny_gps_.location.isUpdated()) {
